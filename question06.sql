@@ -40,15 +40,3 @@ where not exists(
 -- from the inventory_updates table and then used the WHERE clause to check if the records already exist in the inventory table.
 -- If the records do not exist then the records are inserted into the inventory table.
 
--- Another Method
-insert into inventory(inventory_id, product_id, warehouse_id, quantity, last_updated) 
-select u_inventory_id, u_product_id, u_warehouse_id, new_quantity, u_last_updated 
-from inventory_updates
-on duplicate key update
-    quantity = VALUES(quantity),
-    last_updated = VALUES(last_updated);
-
--- Comments:
--- The above query will insert the records from the inventory_updates table into the inventory table. The ON DUPLICATE KEY UPDATE
--- clause is used to update the quantity and last_updated columns if there is a duplicate key conflict. The VALUES function is used
--- to get the new values from the inventory_updates table.
