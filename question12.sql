@@ -21,7 +21,7 @@ select
     p.base_price,
     round(sum(i.quantity * p.base_price) over(rows between unbounded preceding and current row),2) as running_total,
     round(avg(i.quantity) over (rows between unbounded preceding and current row),2) as running_avg,
- 	round((sum(i.quantity * p.base_price) over (rows between unbounded preceding and current row)/sum(i.quantity * p.base_price) over()) * 100, 1) as pct_of_total
+ 	round(((i.quantity * p.base_price)/sum(i.quantity * p.base_price) over()) * 100, 1) as pct_of_total
 from inventory i
 join products p on i.product_id=p.product_id
 join warehouses w on i.warehouse_id=w.warehouse_id;
