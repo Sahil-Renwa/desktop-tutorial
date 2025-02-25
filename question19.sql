@@ -26,4 +26,4 @@ where a.hire_date > b.hire_date and a.manager_id=b.employee_id;
 -- Comments
 -- I used self join to join the table with itself to get the details of employees who joined after their manager.
 -- Then used WHERE clause to filter the employees based on their hire_date and compared their manager_id with employee_id to get the
--- desired output.
+-- desired output.         
