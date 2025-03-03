@@ -17,7 +17,7 @@
 
 select productname, current_qty, prev_month_qty, next_month_qty, pct_change, projected_change from
 (select 
-    p.product_name,
+    p.product_name as productname,
     i.quantity as current_qty,
     lag(i.quantity) over (partition by i.product_id order by i.last_updated) as prev_month_qty,
     lead(i.quantity) over (partition by i.product_id order by i.last_updated) as next_month_qty,
